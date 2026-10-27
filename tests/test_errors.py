@@ -7,7 +7,7 @@ class _SpecificError(AppError):
     pass
 
 
-def test_app_error_is_an_exception():
+def test_app_error_checked_as_exception_is_subclass():
     assert issubclass(AppError, Exception)
 
 
