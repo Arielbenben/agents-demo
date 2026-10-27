@@ -1,0 +1,52 @@
+[project]
+name = "app"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "ruff>=0.8",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # import sorting
+    "N",    # pep8 naming
+    "B",    # bugbear
+    "UP",   # pyupgrade
+    "SIM",  # simplify
+    "RUF",  # ruff-specific
+    "ANN",  # type hints on every function
+    "T20",  # no print
+    "G",    # lazy logging format
+    "BLE",  # blind except
+    "PLR",  # pylint refactor: argument count, magic values
+    "C90",  # complexity
+]
+ignore = [
+    "PLR2004", # magic-value comparisons are too noisy in tests and simple guards
+]
+
+[tool.ruff.lint.pylint]
+max-args = 3
+
+[tool.ruff.lint.mccabe]
+max-complexity = 8
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["ANN"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers --import-mode=importlib"
